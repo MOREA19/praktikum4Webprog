@@ -116,7 +116,7 @@ function openCreateModal() {
 
 async function openEditModal(id) {
     try {
-        const res  = await fetch(`${API_BASE}/${id}`);
+        const res  = await fetch(`${API_BASE}&id=${id}`);
         const json = await res.json();
         if (json.status !== 'success') throw new Error(json.message);
 
@@ -154,7 +154,7 @@ productForm.addEventListener('submit', async (e) => {
     saveBtn.textContent = editMode ? 'Memperbarui...' : 'Menyimpan...';
 
     try {
-        const url    = editMode ? `${API_BASE}/${editId}` : API_BASE;
+        const url    = editMode ? `${API_BASE}&id=${editId}` : API_BASE;
         const method = editMode ? 'PUT' : 'POST';
         const res    = await fetch(url, {
             method,
@@ -190,7 +190,7 @@ async function confirmDelete() {
     document.getElementById('confirmDeleteBtn').textContent = 'Menghapus...';
 
     try {
-        const res  = await fetch(`${API_BASE}/${deleteTarget}`, { method: 'DELETE' });
+        const res  = await fetch(`${API_BASE}&id=${deleteTarget}`, { method: 'DELETE' });
         const json = await res.json();
         if (json.status !== 'success') throw new Error(json.message);
 

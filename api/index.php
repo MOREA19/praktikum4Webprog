@@ -15,14 +15,17 @@ require_once "../config/database.php";
 $database = new Database();
 $db       = $database->getConnection();
 
-// Parse URI — derive base dynamically so it works on any subdirectory/vhost
+// Support query string (?resource=products&id=1) — works without mod_rewrite/nginx config.
+// Also falls back to path-segment routing for backward compatibility.
 $script_dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
 $uri_path   = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $path       = ltrim(substr($uri_path, strlen($script_dir)), '/');
 $segments   = explode('/', $path);
 
-$resource = $segments[0] ?? '';
-$id       = isset($segments[1]) && is_numeric($segments[1]) ? (int)$segments[1] : null;
+$resource = $_GET['resource'] ?? $segments[0] ?? '';
+$id_qs    = isset($_GET['id']) && is_numeric($_GET['id']) ? (int)$_GET['id'] : null;
+$id_path  = isset($segments[1]) && is_numeric($segments[1]) ? (int)$segments[1] : null;
+$id       = $id_qs ?? $id_path;
 $method   = $_SERVER['REQUEST_METHOD'];
 
 // Route to handler
