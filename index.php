@@ -28,19 +28,7 @@
     <!-- Page title -->
     <div class="page-title">
         <h1>Manajemen Produk</h1>
-        <p>Kelola data produk melalui antarmuka ini atau langsung melalui REST API menggunakan Thunder Client.</p>
-    </div>
-
-    <!-- API Info bar -->
-    <div class="api-info">
-        <h3>REST API Endpoints</h3>
-        <div class="api-endpoints">
-            <div class="endpoint-chip"><span class="method-get">GET</span> /api/products</div>
-            <div class="endpoint-chip"><span class="method-get">GET</span> /api/products/{id}</div>
-            <div class="endpoint-chip"><span class="method-post">POST</span> /api/products</div>
-            <div class="endpoint-chip"><span class="method-put">PUT</span> /api/products/{id}</div>
-            <div class="endpoint-chip"><span class="method-delete">DELETE</span> /api/products/{id}</div>
-        </div>
+        <p>Kelola data produk.</p>
     </div>
 
     <!-- Stats -->
