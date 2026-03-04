@@ -15,12 +15,11 @@ require_once "../config/database.php";
 $database = new Database();
 $db       = $database->getConnection();
 
-// Parse URI
-$request_uri  = $_SERVER['REQUEST_URI'];
-$base_path    = '/praktikum4Webprog/api';
-$path         = str_replace($base_path, '', parse_url($request_uri, PHP_URL_PATH));
-$path         = trim($path, '/');
-$segments     = explode('/', $path);
+// Parse URI — derive base dynamically so it works on any subdirectory/vhost
+$script_dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+$uri_path   = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$path       = ltrim(substr($uri_path, strlen($script_dir)), '/');
+$segments   = explode('/', $path);
 
 $resource = $segments[0] ?? '';
 $id       = isset($segments[1]) && is_numeric($segments[1]) ? (int)$segments[1] : null;

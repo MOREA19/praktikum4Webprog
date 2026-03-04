@@ -164,6 +164,9 @@
 <!-- ── Toast container ──────────────────────────────────────────────────────── -->
 <div class="toast-container" id="toastContainer"></div>
 
-<script src="assets/js/app.js"></script>
+<script>
+    const API_BASE = '<?= rtrim(str_replace('\\', '/', dirname($_SERVER['PHP_SELF'])), '/') ?>/api/products';
+</script>
+<script src="assets/js/app.js?v=<?= time() ?>"></script>
 </body>
 </html>

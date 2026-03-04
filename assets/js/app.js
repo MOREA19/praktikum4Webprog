@@ -1,5 +1,3 @@
-const API_BASE = '/praktikum4Webprog/api/products';
-
 // ── State ──────────────────────────────────────────────────────────────────────
 let allProducts  = [];
 let editMode     = false;
